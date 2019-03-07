@@ -1,0 +1,130 @@
+#include<stdio.h>
+#define maxx 310
+
+int nodes;
+int adjMat[maxx][maxx], level[maxx], parent[maxx];
+int queueElement[maxx], frontElement = 0, rearElement = -1;
+
+int isEmpty()
+{
+    if(frontElement> rearElement)
+        return 1;
+    else
+        return 0;
+}
+int isFull()
+{
+    if(rearElement == nodes-1)
+        return 1;
+    else
+        return 0;
+}
+
+void enqueueElement(int data)
+{
+    if(isFull())
+        return ;
+    else
+    {
+        rearElement++;
+        queueElement[rearElement] = data;
+        return ;
+    }
+}
+
+int dequeueElement()
+{
+    int data;
+    if(isEmpty())
+        return -1;
+    else
+    {
+        data = queueElement[frontElement];
+        frontElement++;
+        return data;
+    }
+}
+
+
+
+
+int bfs(int scnode)
+{
+    int u,i;
+    for(int j=0; j<=nodes; j++)
+        level[j]=-1;
+
+    enqueueElement(scnode);
+    level[scnode] = 0;
+    parent[scnode] = 0;
+
+    while(!isEmpty())
+    {
+        u = dequeueElement();
+        for(i=1; i<=nodes; i++)
+        {
+            if(adjMat[u][i] == 1 && level[i] == -1)
+            {
+                level[i] = level[u] + 1;
+                parent[i] = u ;
+                enqueueElement(i);
+            }
+        }
+
+    }
+}
+
+
+
+int main()
+{
+
+    int edges;
+    scanf("%d%d",&nodes,&edges);
+    int s1,s2;
+    for(int i=1; i<=nodes; i++)
+    {
+        scanf("%d%d", &s1,&s2);
+        adjMat[s1][s2]=1;
+        adjMat[s2][s1]=1;
+    }
+
+
+    for (int i = 1; i <= nodes; i++)
+    {
+        for (int j = 1; j <= nodes; j++)
+        {
+            printf("%d ", adjMat[i][j]);
+
+        }
+        printf("\n");
+    }
+
+    int sourcenode;
+    scanf("%d",&sourcenode);
+
+    bfs(sourcenode);
+
+
+    // see level akta node theke ar akta node ar duroto
+    for (int i = 1; i <= nodes; i++)
+        printf("%d ", i);
+    printf("\n");
+
+    for (int i = 1; i <= nodes; i++)
+        printf("%d ", level[i]);
+
+
+//see path
+    int des;
+    scanf("%d",&des);
+    while (parent[des]!= 0)
+    {
+        printf("%d ", parent[des]);
+        des = parent[des];
+    }
+    printf("\n");
+
+
+}
+
