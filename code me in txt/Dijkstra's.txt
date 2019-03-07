@@ -1,0 +1,83 @@
+/*
+* Solution to Dijkstra's Algorithm Without Priority Queue
+* Solved by: Ali AKber Aakash
+* Email: cedward318@gmail.com or ali852609@gmail.com
+*/
+
+#include<bits/stdc++.h>
+
+int adj[100][100];
+int dist[100];
+bool visited[100];
+
+void printShortestPath(int vertices)
+{
+    for(int i=0; i<vertices; i++)
+    {
+        printf("Shortest cost to %d is %d\n", i, dist[i]);
+    }
+    puts("");
+}
+
+int minDist(int vertices)
+{
+    int mini=INT_MAX, minNode;
+
+    for(int i=0; i<vertices; i++)
+    {
+        if(!visited[i] && dist[i]<mini)
+        {
+            mini=dist[i];
+            minNode=i;
+        }
+
+    }
+
+    return minNode;
+}
+
+void dijkstra(int source, int vertices)
+{
+    for(int i=0; i<vertices; i++)
+    {
+        dist[i]=INT_MAX;
+        visited[i]=false;
+    }
+
+    dist[source]=0;
+
+    for(int i=0; i<vertices-1; i++)
+    {
+        int u=minDist(vertices);
+        visited[u]=true;
+
+        for(int v=0; v<vertices; v++)
+        {
+            if(adj[u][v] && (!visited[v]) && dist[u]!=INT_MAX && dist[v]>dist[u]+adj[u][v])
+                dist[v]=dist[u]+adj[u][v];
+        }
+    }
+
+}
+
+int main()
+{
+    int vertices,edges,cost,source,x,y;
+
+    scanf("%d %d", &vertices, &edges);
+
+    for(int i=0; i<edges; i++)
+    {
+        scanf("%d %d %d", &x, &y, &cost);
+        adj[x][y]=cost;
+        adj[y][x]=cost;
+    }
+
+    scanf("%d", &source);
+
+    dijkstra(source, vertices);
+
+    printShortestPath(vertices);
+
+    return 0;
+}

@@ -1,0 +1,46 @@
+D1_Reference App
+Alexa site verification  activity
+
+
+[Kallol Kumar Pal] - 18:33                
+Dear All,
+
+ 
+
+Tizen5.5 GBM(VD) RC3 verification request will be sent approval email after 4 hour.
+
+Refer to below for testing this requests :
+
+ 
+
+- Testing Target : MuseM
+
+- Testing Scope : TCT(native, web, c#), App Test(D1 test case) and alexa top 100 site.
+
+  . Note 
+
+    1. plz check exclude tct list for testing native tct from attachment. Do not execute excluded pkg.
+
+    2. TCT execute : I'll share auto tct results. So just execute manual and behavior tct.
+
+- Due : 25th Feb.
+
+- Testing Binary : To be shared by approval email
+
+- TCT Binary 
+
+  . Native : http://165.213.149.200/download/tct/tizen_5.5/NativeTCT/Auto_Binary/NativeTCT_5.5_20190222_arm.tar.gz
+
+  . Web : http://165.213.149.200/download/tct/tizen_5.5/WebTCT/Auto_Binary/web-tct_5.5_20190222.tar.gz
+
+  . C# : http://165.213.149.200/download/tct/tizen_5.5/CSharpTCT/Auto_Binary/csharp-tct_5.5_20190222.tar.gz
+
+ 
+
+BRs.
+
+Sam.
+
+
+
+

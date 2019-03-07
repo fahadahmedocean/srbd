@@ -1,0 +1,72 @@
+#include <stdio.h>
+int stack[210],top=-1,visited[210],n,arr[210][210];
+
+
+void push(int val)
+{
+    top++;
+    stack[top]=val;
+}
+
+int pop()
+{
+    int ver=stack[top];
+    top--;
+    printf("%d\t",ver);
+    return ver;
+}
+
+int stackempty()
+{
+    if(top==-1)
+        return 1;
+    else
+        return 0;
+}
+
+
+void dfs(int start_vertex)
+{
+    push(start_vertex);
+
+    visited[start_vertex]=1;
+
+    while(!stackempty())
+    {
+        int i;
+        int v=pop();
+        for(i=n-1; i>=0; i--)
+        {
+            if(   !    (! (arr[v][i]))    && !(visited[i])   )
+            {
+                push(i);
+                visited[i]=1;
+            }
+        }
+    }
+}
+
+
+int main()
+{
+
+    int i,j,start_vertex;
+    scanf("%d",&n);
+
+
+    //input adjacent matrix
+    for(i=0; i<n; i++)
+    {
+        for(j=0; j<n; j++)
+        {
+            scanf("%d",&arr[i][j]);
+        }
+    }
+
+    // starting point
+    scanf("%d",&start_vertex);
+
+    dfs(start_vertex);
+
+    return 0;
+}

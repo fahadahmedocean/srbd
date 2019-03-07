@@ -1,0 +1,5 @@
+see all user
+>>	SELECT User FROM mysql.user;
+ 
+see current user
+>>	SELECT User();
